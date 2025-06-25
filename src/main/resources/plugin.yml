@@ -2,7 +2,7 @@ name: ${name}
 main: ${main}
 version: ${version}
 author: ${author}
-api-version: 1.17
+api-version: 1.19.4
 
 depend:
   - packetevents
@@ -12,7 +12,10 @@ softdepend:
   - TAB
   - SkinsRestorer
 
+libraries:
+  - com.github.ben-manes.caffeine:caffeine:3.2.0
+
 commands:
-  nametags-reload:
-    description: Reload the config
-    permission: nametags.command.reload
+  nametags:
+    description: Reload and debug commands
+    permission: nametags.command.admin
