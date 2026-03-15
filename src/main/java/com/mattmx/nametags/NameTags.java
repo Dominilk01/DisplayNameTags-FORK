@@ -23,6 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -54,7 +55,10 @@ public class NameTags extends JavaPlugin {
         packetListener = new OutgoingPacketListener(this);
 
         saveDefaultConfig();
-        saveResource(".override",false);
+        File override = new File(getDataFolder(), ".override");
+        if (!override.exists()) {
+            saveResource(".override", false);
+        }
 
         metrics = new Metrics(this, 25409);
         registerMetrics();
