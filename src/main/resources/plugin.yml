@@ -2,7 +2,8 @@ name: ${name}
 main: ${main}
 version: ${version}
 author: ${author}
-api-version: 1.19.4
+contributors: [Dominilk]
+api-version: "1.19"
 
 depend:
   - packetevents
