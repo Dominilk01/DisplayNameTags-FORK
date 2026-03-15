@@ -5,11 +5,9 @@ runPaper = "2.3.1"
 paper = "1.21.5-R0.1-SNAPSHOT"
 
 placeholderapi = "2.11.6"
-ktgui = "2.4.2-alpha"
-runPaper = "2.3.1"
 
 packetevents = "2.11.2"
-entityLib = "3.1.0-SNAPSHOT"
+entitylib = "3.1.0-SNAPSHOT"
 caffeine = "3.2.0"
 tab = "5.2.0"
 viaversion = "5.0.0"
@@ -26,7 +24,7 @@ packetevents = { module = "com.github.retrooper:packetevents-spigot", version.re
 tab = { module = "com.github.NEZNAMY:TAB-API", version.ref = "tab" }
 skinsrestorer = { module = "net.skinsrestorer:skinsrestorer-api", version.ref = "skinsrestorer" }
 caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }
-entitylib = { module = "me.tofaa.entitylib:spigot", version.ref = "entitylib" }
+entitylib = { module = "io.github.tofaa2:spigot", version.ref = "entitylib" }
 bstats = { group = "org.bstats", name = "bstats-bukkit", version.ref = "bstats" }
 
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
