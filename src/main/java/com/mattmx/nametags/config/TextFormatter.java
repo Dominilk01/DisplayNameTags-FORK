@@ -1,6 +1,5 @@
 package com.mattmx.nametags.config;
 
-import com.mattmx.nametags.NameTags;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -19,13 +18,13 @@ public enum TextFormatter {
     ),
     LEGACY(
         "legacy",
-        (line) -> getLegacySerializer().deserialize(convertLegacyHex(line.replace(NameTags.LEGACY_CHAR, '&')))
+        (line) -> getLegacySerializer().deserialize(convertLegacyHex(line.replace(LegacyComponentSerializer.SECTION_CHAR, '&')))
     ),
     SMART(
         "smart",
         (line) -> {
             // First replace any legacy chars with &
-            String mutableLine = convertLegacyHex(line.replace(NameTags.LEGACY_CHAR, '&'));
+            String mutableLine = convertLegacyHex(line.replace(LegacyComponentSerializer.SECTION_CHAR, '&'));
 
             // Convert legacy to modern formatting
             mutableLine = convertLegacyHexToMiniMessage(mutableLine);

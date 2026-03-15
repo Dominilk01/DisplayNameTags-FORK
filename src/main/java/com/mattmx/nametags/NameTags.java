@@ -31,7 +31,6 @@ import java.util.concurrent.Executors;
 
 public class NameTags extends JavaPlugin {
     public static final int TRANSPARENT = Color.fromARGB(0).asARGB();
-    public static final char LEGACY_CHAR = (char) 167;
     private static @Nullable NameTags instance;
     private final HashMap<String, ConfigurationSection> groups = new HashMap<>();
     private @Nullable Executor executor = null;
@@ -55,6 +54,7 @@ public class NameTags extends JavaPlugin {
         packetListener = new OutgoingPacketListener(this);
 
         saveDefaultConfig();
+        saveResource(".override",false);
 
         metrics = new Metrics(this, 25409);
         registerMetrics();
