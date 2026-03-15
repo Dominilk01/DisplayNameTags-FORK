@@ -1,6 +1,5 @@
 package com.mattmx.nametags.config;
 
-import com.mattmx.nametags.NameTags;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -19,13 +18,13 @@ public enum TextFormatter {
     ),
     LEGACY(
         "legacy",
-        (line) -> getLegacySerializer().deserialize(convertLegacyHex(line.replace(NameTags.LEGACY_CHAR, '&')))
+        (line) -> getLegacySerializer().deserialize(convertLegacyHex(line.replace(LegacyComponentSerializer.SECTION_CHAR, '&')))
     ),
     SMART(
         "smart",
         (line) -> {
             // First replace any legacy chars with &
-            String mutableLine = convertLegacyHex(line.replace(NameTags.LEGACY_CHAR, '&'));
+            String mutableLine = convertLegacyHex(line.replace(LegacyComponentSerializer.SECTION_CHAR, '&'));
 
             // Convert legacy to modern formatting
             mutableLine = convertLegacyHexToMiniMessage(mutableLine);
@@ -55,12 +54,12 @@ public enum TextFormatter {
 
             return MINI_MESSAGE.format(mutableLine);
         }
-    )
-    ;
+    );
 
     // Converts legacy hex format &x&9&0&0&c&3&f -> &#900c3f modern hex format
     // https://github.com/Matt-MX/DisplayNameTags/issues/32#issuecomment-2509403581
     private static final Pattern LEGACY_HEX_PATTERN = Pattern.compile("&x(&[0-9a-fA-F]){6}");
+
     public static String convertLegacyHex(String input) {
         Matcher matcher = LEGACY_HEX_PATTERN.matcher(input);
 
