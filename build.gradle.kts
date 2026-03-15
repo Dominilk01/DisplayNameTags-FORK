@@ -4,7 +4,7 @@ import java.io.InputStreamReader
 plugins {
     id("java")
     alias(libs.plugins.run.paper)
-    alias(libs.plugins.shadow)
+    alias(libs.plugins.shadow) apply true
 
     `maven-publish`
 }
@@ -89,6 +89,7 @@ tasks {
 
     shadowJar {
         mergeServiceFiles()
+        relocate("me.tofaa.entitylib", "com.mattmx.shadow.entitylib")
     }
 
     build {
@@ -98,7 +99,7 @@ tasks {
     test {
         useJUnitPlatform()
     }
-
+    
     runServer {
         val mcVersion = libs.versions.paper.get().split("-")[0]
         minecraftVersion(mcVersion)
