@@ -23,7 +23,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -55,10 +54,6 @@ public class NameTags extends JavaPlugin {
         packetListener = new OutgoingPacketListener(this);
 
         saveDefaultConfig();
-        File override = new File(getDataFolder(), ".override");
-        if (!override.exists()) {
-            saveResource(".override", false);
-        }
 
         metrics = new Metrics(this, 25409);
         registerMetrics();
@@ -143,13 +138,19 @@ public class NameTags extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        metrics.shutdown();
+        if (this.metrics!=null) {
+            metrics.shutdown();
+        }
 
-        HandlerList.unregisterAll(this.eventsListener);
+        if (this.packetListener!=null) {
+            PacketEvents.getAPI()
+                .getEventManager()
+                .unregisterListener(this.packetListener);
+        }
 
-        PacketEvents.getAPI()
-            .getEventManager()
-            .unregisterListener(this.packetListener);
+        if (this.eventsListener!=null) {
+            HandlerList.unregisterAll(this.eventsListener);
+        }
     }
 
     public Executor getExecutor() {
