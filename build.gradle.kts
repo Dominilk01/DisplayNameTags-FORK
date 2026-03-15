@@ -32,6 +32,7 @@ repositories {
 
 dependencies {
     // Provided
+    @Suppress("VulnerableLibrariesLocal", "RedundantSuppression")
     compileOnly(libs.paper)
     compileOnly(libs.placeholderapi)
     compileOnly(libs.tab)
@@ -107,7 +108,7 @@ tasks {
         downloadPlugins {
             hangar("ViaVersion", "5.3.2")
             hangar("ViaBackwards", "5.3.2")
-            modrinth("packetevents","2HJtPM2W")
+            modrinth("packetevents","YjTc55NR") // v2.11.2
 
             // For testing groups in config.yml
             modrinth("luckperms", "v5.4.145-bukkit")
