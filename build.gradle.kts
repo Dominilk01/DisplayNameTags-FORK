@@ -41,12 +41,11 @@ dependencies {
 
     // Shaded
 
-    // Just make it shaded, PluginLoader is not on spigot, and entitylib can't be loaded by PluginLoader,
+    // Just make it shaded, entitylib can't be loaded by PluginLoader!
     // caffeine could be in loader but then onEnable is not on normal PluginClassLoader so can't use `Bukkit.getPluginCommand("nametags")`
-    // but without PluginClassLoader you need to use Mojang Brigader, and it's not compatible with bukkit `CommandExecutor, TabCompleter`
-    // would need to have 2 time the command 1 for bukkit/spigot and 1 for papermc brigader
+    // but without normal PluginClassLoader you need to use Mojang Brigader, and it's not compatible with bukkit `CommandExecutor, TabCompleter`
     //
-    // TLDR: keep Shaded
+    // TLDR: Rewrite command to use mojang Brigader then can use PluginLoader
     implementation(libs.entitylib)
     implementation(libs.caffeine)
     implementation(libs.bstats)
