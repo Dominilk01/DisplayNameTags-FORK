@@ -111,12 +111,12 @@ tasks {
         minecraftVersion(mcVersion)
 
         downloadPlugins {
-            hangar("ViaVersion", "5.3.2")
-            hangar("ViaBackwards", "5.3.2")
+            hangar("ViaVersion", "5.7.3-SNAPSHOT+930")
+            hangar("ViaBackwards", "5.7.2")
             modrinth("packetevents","YjTc55NR") // v2.11.2
 
             // For testing groups in config.yml
-            modrinth("luckperms", "v5.4.145-bukkit")
+            modrinth("luckperms", "v5.5.17-bukkit")
         }
 
         jvmArgs("-Dcom.mojang.eula.agree=true")
@@ -155,6 +155,18 @@ publishing {
             version = rootProject.version.toString()
         }
     }
+}
+
+tasks.withType(xyz.jpenilla.runtask.task.AbstractRun::class) {
+    javaLauncher = javaToolchains.launcherFor {
+        @Suppress("UnstableApiUsage")
+        vendor.set(JvmVendorSpec.JETBRAINS)
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+    jvmArgs("-XX:+AllowEnhancedClassRedefinition")
+
+//    val agentPath = file("${project.rootDir}/libs/hotswap-agent.jar").absolutePath
+//    jvmArgs("-javaagent:$agentPath")
 }
 
 fun getCurrentCommitHash(): String {
